@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="577.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller.Controller">
+   <children>
+      <Button fx:id="searchButton" layoutX="486.0" layoutY="403.0" mnemonicParsing="false" onAction="#searchResults" onMouseClicked="#searchResults" text="Search" />
+      <TextField fx:id="minDaysStayIn" alignment="CENTER" layoutX="30.0" layoutY="87.0" onKeyTyped="#checkNumberInput" prefHeight="25.0" prefWidth="149.0" promptText="number only" />
+      <Label alignment="CENTER" layoutX="28.0" layoutY="60.0" prefHeight="17.0" prefWidth="161.0" text="How many days (min) " textAlignment="CENTER" />
+      <Label alignment="CENTER" layoutX="357.0" layoutY="65.0" prefHeight="17.0" prefWidth="169.0" text="Origin" />
+      <Label layoutX="413.0" layoutY="207.0" text="Destination" />
+      <Label alignment="CENTER" layoutX="30.0" layoutY="130.0" prefHeight="17.0" prefWidth="149.0" text="How many days (max)" />
+      <TextField fx:id="maxDaysStayIn" alignment="CENTER" layoutX="30.0" layoutY="155.0" onKeyTyped="#checkNumberInput" promptText="number only" />
+      <DatePicker fx:id="startDate" layoutX="34.0" layoutY="238.0" prefHeight="25.0" prefWidth="149.0" promptText="Start" />
+      <Label alignment="CENTER" layoutX="57.0" layoutY="210.0" prefHeight="17.0" prefWidth="96.0" text="Time period from:" />
+      <DatePicker fx:id="endDate" layoutX="34.0" layoutY="275.0" prefHeight="25.0" prefWidth="149.0" promptText="End" />
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="139.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <ComboBox id="originCity" fx:id="originCity" layoutX="338.0" layoutY="92.0" onAction="#checkCitiesInput" prefHeight="32.0" prefWidth="200.0" promptText="Origin City">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </ComboBox>
+      <ComboBox fx:id="destinationCity" layoutX="338.0" layoutY="238.0" onAction="#checkCitiesInput" prefHeight="32.0" prefWidth="200.0" promptText="Destination City" />
+      <Label fx:id="resultLabel" alignment="TOP_LEFT" layoutX="34.0" layoutY="368.0" prefHeight="111.0" prefWidth="285.0" wrapText="true" />
+      <CheckBox fx:id="fillAllDataCheckBox" layoutX="345.0" layoutY="360.0" mnemonicParsing="false" onAction="#updateButtonState" text="I filled out all the details correctly" />
+   </children>
+</AnchorPane>
