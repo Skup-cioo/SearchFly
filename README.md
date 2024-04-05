@@ -4,9 +4,10 @@ When you run program, the searchFly looks like
 
 ![image](https://github.com/Skup-cioo/SearchFly/assets/121893014/a5c0be9c-df44-4166-a40c-93ba6b77fe01) 
 
-# Installation and how use it 
-Installation is very simple, just download the program from this link https://github.com/Skup-cioo/SearchFly/releases <br>
-How to use - ? Complete the fields for how long you want to fly, in what time range, e.g. from August 1 to September 1, and what location you are interested in. <br>
+# Requirement, installation and how use it 
+Requirement: java version 11+ <br>
+Installation is very simple, just download the jar program from this link https://github.com/Skup-cioo/SearchFly/releases <br>
+How to use ? Complete the fields for how long you want to fly, in what time range, e.g. from August 1 to September 1, and what location you are interested in. <br>
 Then select the checkbox and click the search button. After a while, the program should print the cheapest option.<br>
 ![image](https://github.com/Skup-cioo/SearchFly/assets/121893014/dd38a8d0-feef-4b21-bdbd-a03edb89d6c3)
 
