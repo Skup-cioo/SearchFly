@@ -20,4 +20,7 @@ public class SupportMethods {
 
     private ObservableList<BooleanProperty> listOfValidators = FXCollections.observableArrayList(
             numbersValueCorrect, dataValueCorrect, citiesValueCorrect);
+
+
+
 }

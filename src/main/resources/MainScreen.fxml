@@ -5,12 +5,14 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="577.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller.Controller">
    <children>
@@ -24,21 +26,11 @@
       <DatePicker fx:id="startDate" layoutX="34.0" layoutY="238.0" prefHeight="25.0" prefWidth="149.0" promptText="Start" />
       <Label alignment="CENTER" layoutX="57.0" layoutY="210.0" prefHeight="17.0" prefWidth="96.0" text="Time period from:" />
       <DatePicker fx:id="endDate" layoutX="34.0" layoutY="275.0" prefHeight="25.0" prefWidth="149.0" promptText="End" />
-      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="139.0">
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="608.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" text="How to use" />
             </items>
           </Menu>
         </menus>
@@ -49,7 +41,12 @@
          </opaqueInsets>
       </ComboBox>
       <ComboBox fx:id="destinationCity" layoutX="338.0" layoutY="238.0" onAction="#checkCitiesInput" prefHeight="32.0" prefWidth="200.0" promptText="Destination City" />
-      <Label fx:id="resultLabel" alignment="TOP_LEFT" layoutX="34.0" layoutY="368.0" prefHeight="111.0" prefWidth="285.0" wrapText="true" />
       <CheckBox fx:id="fillAllDataCheckBox" layoutX="345.0" layoutY="360.0" mnemonicParsing="false" onAction="#updateButtonState" text="I filled out all the details correctly" />
+      <VBox fx:id="resultVBox" layoutX="28.0" layoutY="328.0" prefHeight="200.0" prefWidth="253.0">
+         <children>
+            <Label fx:id="resultLabel" alignment="TOP_LEFT" prefHeight="150.0" prefWidth="257.0" wrapText="true" />
+            <Hyperlink fx:id="linkToFruPage" alignment="BOTTOM_CENTER" contentDisplay="CENTER" onAction="#openHyperLink" prefHeight="23.0" prefWidth="260.0" text="Click Link" textAlignment="RIGHT" />
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

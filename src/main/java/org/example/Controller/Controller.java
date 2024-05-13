@@ -3,10 +3,20 @@ package org.example.Controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import javafx.beans.property.BooleanProperty;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import org.example.Data.City;
+import org.example.Data.Result;
+import org.example.Data.Uri;
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
@@ -41,7 +51,14 @@ public class Controller {
     @FXML
     private Label resultLabel;
 
+    @FXML
+    private Hyperlink linkToFruPage;
+
+    @FXML
+    private VBox resultVBox;
+
     private SupportMethods supportMethods;
+    private Result bestResult;
 
     @FXML
     private void initialize() {
@@ -50,6 +67,7 @@ public class Controller {
         originCity.setItems(FXCollections.observableArrayList(citiesArray));
         destinationCity.setItems(FXCollections.observableArrayList(citiesArray));
         searchButton.setDisable(true);
+        resultVBox.setVisible(false);
     }
 
     @FXML
@@ -59,19 +77,38 @@ public class Controller {
         Integer maxDays = Integer.parseInt(maxDaysStayIn.getText());
         LocalDate startRange = startDate.getValue();
         LocalDate endRange = endDate.getValue();
-        City.valueOf(originCity.getValue());
         City origin = City.valueOf(originCity.getValue());
         City destination = City.valueOf(destinationCity.getValue());
         try {
             if (minDays.equals(maxDays)) {
-                cheapestResult = supportMethods.getCore().cheapestFlyBothSides(startRange, endRange, origin, destination, 1, maxDays).toString();
+                bestResult = supportMethods.getCore().cheapestFlyBothSides(startRange, endRange, origin, destination, 1, maxDays);
             } else {
-                cheapestResult = supportMethods.getCore().cheapestFlyBothSidesInRange(startRange, endRange, origin, destination, 1, minDays, maxDays).toString();
+                bestResult = supportMethods.getCore().cheapestFlyBothSidesInRange(startRange, endRange, origin, destination, 1, minDays, maxDays);
             }
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-        resultLabel.setText(String.format("We found the best option %s", cheapestResult));
+        resultVBox.setVisible(true);
+        resultLabel.setText(String.format("We found the best option %s", bestResult.toString()));
+    }
+
+    @FXML
+    public void openHyperLink(ActionEvent actionEvent) {
+        LocalDate startDate = bestResult.getStartDate();
+        LocalDate endDate = bestResult.getEndDate();
+        City origin = City.valueOf(originCity.getValue());
+        City destination = City.valueOf(destinationCity.getValue());
+
+        String flightSearchUrl = String.format("%s/flight_search/from/%s/to/%s/from_code/%s/to_code/%s/dd/%s/rd/%s/ad/1",
+                Uri.FRU.getValue(), origin.getPolishName(), destination.getPolishName(),
+                origin.getAirportCode(), destination.getAirportCode(), startDate.toString(), endDate.toString());
+
+        try {
+            Desktop desktop = Desktop.getDesktop();
+            desktop.browse(URI.create(flightSearchUrl));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

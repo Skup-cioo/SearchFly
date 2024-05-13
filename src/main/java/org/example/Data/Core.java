@@ -56,7 +56,7 @@ public class Core {
         }
 
         List<Float> listOfPriceAtDay = scoreObjectsList.stream()
-                .map(score -> score.getJSONObject("score").getFloat("priceWithoutTransactionFee"))
+                .map(score -> score.getJSONObject("score").getFloat("price"))
                 .collect(Collectors.toList());
         Optional<Float> lowestPrice = listOfPriceAtDay.stream().min(Comparator.naturalOrder());
         return lowestPrice.orElseGet(lowestPrice::get);
