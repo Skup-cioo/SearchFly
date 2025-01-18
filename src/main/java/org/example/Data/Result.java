@@ -14,10 +14,10 @@ public class Result {
 
     @Override
     public String toString() {
-        return  "\n Total amount: " + totalAmount +
-                "\n we start holidays on " + startDate +
-                "\n ,and ends on " + endDate +
-                "\n ticket to our destination costs: " + amountToDestination +
-                "\n and return: " + amountToOrigin;
+        return  "\n Calkowita Kwota " + totalAmount +
+                "\n Lot docelowy jest " + startDate +
+                "\n ,a konczy sie " + endDate +
+                "\n bilety w tamta strone kosztuja: " + amountToDestination +
+                "\n i powrotne: " + amountToOrigin;
     }
 }

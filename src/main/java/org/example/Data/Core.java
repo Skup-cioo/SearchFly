@@ -21,11 +21,10 @@ public class Core {
     private static final int NUM_THREADS = 10;
     private ExecutorService executor = Executors.newFixedThreadPool(NUM_THREADS);
 
-    private List<Query> getQuery(Location destination, Location origin, String date) {
-        query.setDeparture(date);
-        query.setOrigin(origin);
-        query.setDestination(destination);
-        return List.of(query);
+    private Query getQuery(List<Location> destination, List<Location> origin) {
+        query.setOrigins(origin);
+        query.setDestinations(destination);
+        return query;
     }
 
     private String prepareBody(City originCity, City destinationCity, String date, Integer peopleAmount) throws JsonProcessingException {
@@ -33,8 +32,12 @@ public class Core {
         String destinC = destinationCity.getAirportCode();
         Location origin = new Location(originC);
         Location destination = new Location(destinC);
+        List<List<Location>> ListOfLocation = new ArrayList<>();
+        ListOfLocation.add(List.of(origin));
+        ListOfLocation.add(List.of(destination));
         Passengers passengers = new Passengers(peopleAmount, 0, 0, 0);
-        FlightQuery flightQuery = new FlightQuery(getQuery(destination, origin, date), passengers, "");
+        Dates dates = new Dates(date, date, "", "");
+        FlightQuery flightQuery = new FlightQuery(dates, getQuery(ListOfLocation.get(1), ListOfLocation.get(0)), passengers, "");
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(flightQuery);
     }
@@ -69,9 +72,10 @@ public class Core {
 
     private float getCheapestPriceFromDay(City originCity, City destinationCity, LocalDate date, Integer peopleAmount) throws JsonProcessingException {
         String body = prepareBody(originCity, destinationCity, prepareDate(date), peopleAmount);
+        //TODO stad jest data
         Response postResponseFru = requests.sendPostRequest(body);
         JSONObject jsonResponse = new JSONObject(postResponseFru.prettyPrint());
-        JSONArray arrayWithContent = checkIfResponseIsCorrect(jsonResponse.getString("id"));
+        JSONArray arrayWithContent = checkIfResponseIsCorrect(jsonResponse.getJSONObject("search").getString("searchId"));
         return getLowestPriceFromResponseBody(arrayWithContent);
     }
 

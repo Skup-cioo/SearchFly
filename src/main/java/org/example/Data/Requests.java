@@ -12,9 +12,9 @@ public class Requests {
     }
 
     protected Response sendPostRequest(String body) {
-        return RestAssured.given()
+        return RestAssured.given().log().all()
                 .baseUri(Uri.BASE.getValue())
-                .basePath("/gateway/travelOffers/")
+                .basePath("/gateway/discover")
                 .contentType(ContentType.JSON)
                 .header(prepareHeader("X-Affiliate", "fru"))
                 .body(body)
@@ -36,3 +36,4 @@ public class Requests {
                 .extract().response();
     }
 }
+

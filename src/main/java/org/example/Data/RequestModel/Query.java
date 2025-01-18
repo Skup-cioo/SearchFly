@@ -3,10 +3,10 @@ package org.example.Data.RequestModel;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 public class Query implements Serializable {
-    private String departure;
-    private Location origin;
-    private Location destination;
+    private List<Location> origins;
+    private List<Location> destinations;
 }

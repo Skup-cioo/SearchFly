@@ -3,16 +3,17 @@ package org.example.Data.RequestModel;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Data
 public class FlightQuery implements Serializable {
-    private List<Query> queries;
+    private Dates dates;
+    private Query locations;
     private String deduplicate;
     private Passengers passengers;
 
-    public FlightQuery(List<Query> queries, Passengers passengers, String deduplicate) {
-        this.queries = queries;
+    public FlightQuery(Dates dates, Query locations, Passengers passengers, String deduplicate) {
+        this.dates = dates;
+        this.locations = locations;
         this.passengers = passengers;
         this.deduplicate = deduplicate;
     }
