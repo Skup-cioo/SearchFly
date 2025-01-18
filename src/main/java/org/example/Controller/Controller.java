@@ -89,7 +89,7 @@ public class Controller {
             throw new RuntimeException(e);
         }
         resultVBox.setVisible(true);
-        resultLabel.setText(String.format("We found the best option %s", bestResult.toString()));
+        resultLabel.setText(String.format("Znalezlismy najlepsza opcje %s", bestResult.toString()));
     }
 
     @FXML

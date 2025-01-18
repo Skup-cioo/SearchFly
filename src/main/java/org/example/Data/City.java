@@ -20,6 +20,8 @@ public enum City {
     BRUSSELS("BRU", "BRUSSELS", "Bruksela"),
     SPLIT("SPU", "SPLIT", "Split"),
     ZAGRZEB("ZAG", "ZAGRZEB", "Zagrzeb"),
+    BERGAMO("BGY", "BERGAMO", "Bergamo"),
+    MEDIOLAN_ALL("MIL", "MEDIOLAN_ALL", "Mediolan_Wszystkie"),
     PRAGA("PRG", "PRAGA", "Praga");
 
 
